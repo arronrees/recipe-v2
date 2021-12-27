@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,900;1,300;1,400&family=Titillium+Web:wght@300;400;600;700&display=swap');
+
+a {
+  color: currentColor;
+  display: inline-block;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

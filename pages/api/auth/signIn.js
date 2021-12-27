@@ -13,9 +13,9 @@ async function signIn(req, res) {
   const { error } = joiUserLogin.validate(body);
 
   if (error) {
-    const errors = catchUserErrors(error);
-
-    res.status(400).json(errors);
+    res
+      .status(400)
+      .json({ message: 'Incorrect details, please check and try again' });
     return;
   }
 
@@ -28,7 +28,9 @@ async function signIn(req, res) {
 
   // no user found
   if (!user) {
-    res.status(400).json({ email: 'Email not registered, please sign up' });
+    res
+      .status(400)
+      .json({ message: 'Incorrect details, please check and try again' });
     return;
   }
 
@@ -38,7 +40,7 @@ async function signIn(req, res) {
   if (!passwordMatches) {
     res
       .status(400)
-      .json({ password: 'Incorrect details, please check and try again' });
+      .json({ message: 'Incorrect details, please check and try again' });
   } else {
     const userToshow = { ...user.dataValues, password: 'hidden' };
     req.session.user = userToshow;
