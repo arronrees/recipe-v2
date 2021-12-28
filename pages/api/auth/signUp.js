@@ -3,6 +3,7 @@ import { joiUser } from '../../../utils/auth/joiUser';
 import catchUserErrors from '../../../utils/auth/catchUserErrors';
 
 import { withSessionRoute } from '../../../utils/iron/withSession';
+import sendEmailVerification from '../../../utils/email/sendEmailVerification';
 
 export default withSessionRoute(signUp);
 
@@ -27,6 +28,8 @@ async function signUp(req, res) {
     return;
   } else {
     const userToShow = { ...user.dataValues, password: 'hidden' };
+
+    // const email = await sendEmailVerification();
 
     // save user to session
     req.session.user = userToShow;

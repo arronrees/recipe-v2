@@ -26,7 +26,7 @@ export default function NavMenu({ navOpen, setNavOpen }) {
       </button>
       <ul className='px-4 pt-24'>
         <li className='font-semibold'>
-          <Link href='/user'>
+          <Link href='/profile'>
             <a>My Account</a>
           </Link>
         </li>

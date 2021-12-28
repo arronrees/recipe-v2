@@ -25,9 +25,13 @@ export const User = db.define('user', {
     type: DataTypes.STRING(1024),
     allowNull: false,
   },
+  emailValidated: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
   // profilePicture,
 });
 
-User.sync({ force: false }).then(() => {
-  console.log('User model synced');
-});
+// User.sync({ force: false }).then(() => {
+//   console.log('User model synced');
+// });
