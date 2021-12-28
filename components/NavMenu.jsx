@@ -3,7 +3,7 @@ import Link from 'next/link';
 export default function NavMenu({ navOpen, setNavOpen }) {
   return (
     <nav
-      className={`text-gray-700 bg-gray-100 absolute w-10/12 h-screen top-0 left-0 sm:w-9/12 md:w-8/12 shadow-2xl transform transition duration-500 z-20 
+      className={`text-gray-700 bg-gray-100 absolute w-10/12 h-screen top-0 left-0 sm:w-9/12 md:w-8/12 shadow-2xl transform transition duration-500 z-40 
        ${navOpen ? 'translate-x-0' : '-translate-x-full'} `}
     >
       <button
