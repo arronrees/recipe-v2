@@ -27,6 +27,7 @@ async function updateDetails(req, res) {
 
   user.firstName = body.firstName;
   user.lastName = body.lastName;
+  user.email = body.email;
   await user.save();
 
   const userToShow = { ...user.dataValues, password: 'hidden' };

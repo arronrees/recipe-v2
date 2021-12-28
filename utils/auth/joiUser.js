@@ -15,6 +15,7 @@ export const joiUserLogin = Joi.object({
 export const joiUserDetails = Joi.object({
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),
+  email: Joi.string().email().required(),
   id: Joi.any(),
 }).required();
 

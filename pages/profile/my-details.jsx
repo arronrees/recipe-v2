@@ -29,7 +29,7 @@ export default function MyDetails({ user }) {
     let userDetails = {
       firstName: firstName.current.value,
       lastName: lastName.current.value,
-      // email: email.current.value,
+      email: email.current.value,
       id: user.id,
     };
 
@@ -47,7 +47,11 @@ export default function MyDetails({ user }) {
       setDetailsError(data.firstName);
     } else if (data.lastName) {
       setDetailsError(data.lastName);
+    } else if (data.email) {
+      setDetailsError(data.email);
     }
+
+    return;
   }
 
   async function sendPassword(e) {
@@ -68,8 +72,6 @@ export default function MyDetails({ user }) {
     });
 
     const data = await res.json();
-
-    console.log(data);
 
     if (data.message === 'Password updated successfully') {
       router.reload();
@@ -129,7 +131,7 @@ export default function MyDetails({ user }) {
                 defaultValue={user.lastName}
               />
             </div>
-            {/* <div>
+            <div>
               <label
                 className='block pb-2 font-medium text-gray-500'
                 htmlFor='email'
@@ -145,7 +147,7 @@ export default function MyDetails({ user }) {
                 id='email'
                 defaultValue={user.email}
               />
-            </div> */}
+            </div>
             <div>
               <button
                 type='submit'
@@ -156,7 +158,7 @@ export default function MyDetails({ user }) {
             </div>
             {detailsError && (
               <div className='error text-base text-red-500 font-medium py-2 px-4'>
-                {setDetailsError}
+                {detailsError}
               </div>
             )}
           </form>
