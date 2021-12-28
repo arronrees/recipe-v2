@@ -26,8 +26,6 @@ export default function Add({ user }) {
       public: recipePublic.current.value,
     };
 
-    console.log(recipe);
-
     const res = await fetch('/api/recipe/add', {
       method: 'POST',
       body: JSON.stringify(recipe),
@@ -35,8 +33,6 @@ export default function Add({ user }) {
     });
 
     const data = await res.json();
-
-    console.log(data);
 
     if (data.message === 'Recipe created successfully') {
       router.push('/profile');

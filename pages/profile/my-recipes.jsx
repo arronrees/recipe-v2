@@ -5,7 +5,7 @@ import Seo from '../../components/Seo';
 import Header from '../../components/Header';
 import Menu from '../../components/profile/menu';
 import RecipeGrid from '../../components/recipes/RecipeGrid';
-import RecipeItem from '../../components/recipes/RecipeItem';
+import RecipeGridItem from '../../components/recipes/RecipeGridItem';
 
 export default function MyRecipes({ user, recipes }) {
   return (
@@ -21,7 +21,7 @@ export default function MyRecipes({ user, recipes }) {
           <RecipeGrid>
             {recipes &&
               recipes.map((recipe) => (
-                <RecipeItem key={recipe.id} recipe={recipe} />
+                <RecipeGridItem key={recipe.id} recipe={recipe} />
               ))}
           </RecipeGrid>
         </section>

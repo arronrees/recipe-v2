@@ -1,4 +1,5 @@
 import { Recipe } from '../../../utils/db/models/Recipe';
+import { User } from '../../../utils/db/models/USer';
 import { joiRecipe } from '../../../utils/recipe/joiRecipe';
 import { withSessionRoute } from '../../../utils/iron/withSession';
 
@@ -16,7 +17,9 @@ async function addRecipe(req, res) {
   }
 
   // no error create recipe
-  const recipe = await Recipe.create(body);
+  const user = await User.findOne({ where: { id: body.userId } });
+  const recipe = { ...body, userName: `${user.firstName} ${user.lastName}` };
+  const createdRecipe = await Recipe.create(recipe);
 
   res.json({ message: 'Recipe created successfully' });
   return;

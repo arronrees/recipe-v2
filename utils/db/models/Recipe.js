@@ -10,6 +10,9 @@ export const Recipe = db.define('recipe', {
   userId: {
     type: UUID,
   },
+  userName: {
+    type: DataTypes.STRING(255),
+  },
   name: {
     type: DataTypes.STRING(255),
     allowNull: false,
