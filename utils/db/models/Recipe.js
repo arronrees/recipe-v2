@@ -24,6 +24,6 @@ export const Recipe = db.define('recipe', {
   },
 });
 
-Recipe.sync({ alter: true }).then(() => {
-  console.log('Recipe model synced');
-});
+// Recipe.sync({ force: false }).then(() => {
+//   console.log('Recipe model synced');
+// });
