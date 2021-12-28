@@ -7,24 +7,7 @@ import Menu from '../../components/profile/menu';
 import RecipeGrid from '../../components/recipes/RecipeGrid';
 import RecipeItem from '../../components/recipes/RecipeItem';
 
-import { useEffect } from 'react';
-import { useState } from 'react';
-
-export default function MyRecipes({ user }) {
-  const [userRecipes, setUserRecipes] = useState(null);
-
-  async function fetchUserRecipes() {
-    const res = await fetch(`/api/recipe/findUserRecipes?userId=${user.id}`);
-
-    const data = await res.json();
-
-    setUserRecipes(data);
-  }
-
-  useEffect(() => {
-    fetchUserRecipes();
-  }, []);
-
+export default function MyRecipes({ user, recipes }) {
   return (
     <Layout>
       <Seo title='My Details' />
@@ -36,8 +19,8 @@ export default function MyRecipes({ user }) {
             Welcome, {user.firstName} {user.lastName}
           </h1>
           <RecipeGrid>
-            {userRecipes &&
-              userRecipes.map((recipe) => (
+            {recipes &&
+              recipes.map((recipe) => (
                 <RecipeItem key={recipe.id} recipe={recipe} />
               ))}
           </RecipeGrid>
@@ -60,10 +43,24 @@ export const getServerSideProps = withSessionSsr(
       };
     }
 
-    return {
-      props: {
-        user,
-      },
-    };
+    try {
+      const data = await fetch(
+        `http://localhost:3000/api/recipe/findUserRecipes?userId=${user.id}`
+      );
+      const recipes = await data.json();
+
+      return {
+        props: {
+          user,
+          recipes,
+        },
+      };
+    } catch (err) {
+      return {
+        props: {
+          user,
+        },
+      };
+    }
   }
 );
