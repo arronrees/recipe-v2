@@ -8,6 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tinymce/tinymce-react": "^3.13.0",
     "bcrypt": "^5.0.1",
     "iron-session": "^6.0.4",
     "joi": "^17.5.0",

@@ -1,5 +1,4 @@
 import { DataTypes, UUID, UUIDV4 } from 'sequelize';
-
 import { db } from '../db';
 
 // user db model
