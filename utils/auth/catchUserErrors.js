@@ -1,4 +1,4 @@
-export default function catchUserErrors(err) {
+export function catchUserErrors(err) {
   // console.log(err.message);
 
   let errors = {
@@ -51,6 +51,35 @@ export default function catchUserErrors(err) {
   // email invalid format
   if (err.message.includes('"email" must be a valid email')) {
     errors.email = 'Email must be valid';
+  }
+
+  return errors;
+}
+
+export function catchPasswordErrors(err) {
+  let errors = {
+    currPassword: '',
+    newPassword: '',
+  };
+
+  if (err.message.includes('"currPassword" is not allowed to be empty')) {
+    errors.currPassword = 'Current password cannot by empty';
+  }
+  if (err.message.includes('"currPassword" is required')) {
+    errors.currPassword = 'Current password cannot by empty';
+  }
+  if (err.message.includes('"newPassword" is not allowed to be empty')) {
+    errors.newPassword = 'New password cannot by empty';
+  }
+  if (err.message.includes('"newPassword" is required')) {
+    errors.newPassword = 'New password cannot by empty';
+  }
+  if (
+    err.message.includes(
+      '"newPassword" length must be at least 8 characters long'
+    )
+  ) {
+    errors.newPassword = 'New password must be at least 8 characters';
   }
 
   return errors;

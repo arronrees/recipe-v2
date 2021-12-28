@@ -1,8 +1,7 @@
 import { joiUserLogin } from '../../../utils/auth/joiUser';
-import catchUserErrors from '../../../utils/auth/catchUserErrors';
 import { withSessionRoute } from '../../../utils/iron/withSession';
 import { User } from '../../../utils/db/models/User';
-import checkPassword from '../../../utils/auth/checkPassword';
+import { checkPassword } from '../../../utils/auth/passwordUtils';
 
 export default withSessionRoute(signIn);
 

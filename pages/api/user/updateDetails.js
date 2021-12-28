@@ -1,4 +1,4 @@
-import catchUserErrors from '../../../utils/auth/catchUserErrors';
+import { catchUserErrors } from '../../../utils/auth/catchUserErrors';
 import { joiUserDetails } from '../../../utils/auth/joiUser';
 import { User } from '../../../utils/db/models/User';
 import { withSessionRoute } from '../../../utils/iron/withSession';
@@ -12,7 +12,6 @@ async function updateDetails(req, res) {
   const { error } = joiUserDetails.validate(body);
 
   if (error) {
-    console.log(error);
     const errors = catchUserErrors(error);
 
     res.status(400).json(errors);

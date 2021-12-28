@@ -1,6 +1,6 @@
 import createUser from '../../../utils/auth/createUser';
 import { joiUser } from '../../../utils/auth/joiUser';
-import catchUserErrors from '../../../utils/auth/catchUserErrors';
+import { catchUserErrors } from '../../../utils/auth/catchUserErrors';
 
 import { withSessionRoute } from '../../../utils/iron/withSession';
 import sendEmailVerification from '../../../utils/email/sendEmailVerification';

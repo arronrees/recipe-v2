@@ -1,4 +1,4 @@
-import hashPassword from './hashPassword';
+import { hashPassword } from './passwordUtils';
 
 import { User } from '../db/models/User';
 
