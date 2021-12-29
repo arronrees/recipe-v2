@@ -7,6 +7,7 @@ import Menu from '../../components/profile/menu';
 
 import { useState, useRef } from 'react';
 import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 
 export default function MyDetails({ user }) {
   const router = useRouter();
@@ -42,7 +43,8 @@ export default function MyDetails({ user }) {
     const data = await res.json();
 
     if (data.message === 'User details updated successfully') {
-      router.reload();
+      toast.success(data.message);
+      router.push('/profile/my-details');
     } else if (data.firstName) {
       setDetailsError(data.firstName);
     } else if (data.lastName) {
@@ -74,7 +76,8 @@ export default function MyDetails({ user }) {
     const data = await res.json();
 
     if (data.message === 'Password updated successfully') {
-      router.reload();
+      toast.success(data.message);
+      router.push('/profile/my-details');
     } else if (data.currPassword) {
       setPasswordError(data.currPassword);
     } else if (data.newPassword) {
@@ -181,6 +184,7 @@ export default function MyDetails({ user }) {
                 type='password'
                 name='currPassword'
                 id='currPassword'
+                defaultValue=''
               />
             </div>
             <div>
@@ -197,6 +201,7 @@ export default function MyDetails({ user }) {
                 type='password'
                 name='newPassword'
                 id='newPassword'
+                defaultValue=''
               />
             </div>
             <div>
