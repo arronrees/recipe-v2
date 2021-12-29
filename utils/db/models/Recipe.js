@@ -31,6 +31,9 @@ export const Recipe = db.define('recipe', {
   cookTime: {
     type: DataTypes.INTEGER,
   },
+  totalTime: {
+    type: DataTypes.INTEGER,
+  },
   serves: {
     type: DataTypes.INTEGER,
   },

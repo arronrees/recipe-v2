@@ -43,7 +43,7 @@ export default function AddRecipe({ user }) {
     const data = await res.json();
 
     if (data.message === 'Recipe created successfully') {
-      router.push('/profile');
+      router.push('/profile/my-recipes');
     } else if (data.message) {
       setRecipeError(data.message);
     }
@@ -175,8 +175,8 @@ export default function AddRecipe({ user }) {
                 name='recipePublic'
                 id='recipePublic'
               >
-                <option value={false}>No</option>
                 <option value={true}>Yes</option>
+                <option value={false}>No</option>
               </select>
             </div>
             <div>

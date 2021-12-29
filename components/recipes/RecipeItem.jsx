@@ -48,7 +48,7 @@ export default function RecipeItem({ recipe, user }) {
         <h1 className='font-semibold text-2xl absolute z-20 w-full bottom-0 p-4 pr-20 text-white'>
           {recipe.name}
         </h1>
-        {user && user.savedRecipes.includes(recipe.id) ? (
+        {user && user.savedRecipes && user.savedRecipes.includes(recipe.id) ? (
           <button
             type='button'
             className='absolute z-20 bottom-4 right-4 bg-rose-500 p-2 w-10 h-10 rounded-md hover:bg-rose-600 active:bg-rose-700 transition'

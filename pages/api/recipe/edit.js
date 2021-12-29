@@ -18,6 +18,7 @@ export default async function editRecipe(req, res) {
   // no error update recipe
   const recipe = await Recipe.findOne({ where: { id } });
   recipe.update(body);
+  recipe.totalTime = parseFloat(recipe.prepTime) + parseFloat(recipe.cookTime);
   recipe.save();
 
   res.json({ message: 'Recipe updated successfully' });

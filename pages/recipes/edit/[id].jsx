@@ -42,7 +42,7 @@ export default function EditRecipe({ user, recipe }) {
     const data = await res.json();
 
     if (data.message === 'Recipe updated successfully') {
-      router.reload();
+      router.push(`/recipes/${recipe.id}`);
     } else if (data.message) {
       setRecipeError(data.message);
     }
@@ -192,7 +192,7 @@ export default function EditRecipe({ user, recipe }) {
                 type='submit'
                 className='py-2 px-4 transition border border-transparent shadow-sm  font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
               >
-                Add recipe
+                Edit recipe
               </button>
             </div>
             {recipeError && (

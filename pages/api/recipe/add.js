@@ -15,7 +15,11 @@ export default async function addRecipe(req, res) {
 
   // no error create recipe
   const user = await User.findOne({ where: { id: body.userId } });
-  const recipe = { ...body, userName: `${user.firstName} ${user.lastName}` };
+  const recipe = {
+    ...body,
+    userName: `${user.firstName} ${user.lastName}`,
+    totalTime: parseFloat(prepTime) + parseFloat(cookTime),
+  };
   const createdRecipe = await Recipe.create(recipe);
 
   res.json({ message: 'Recipe created successfully' });
