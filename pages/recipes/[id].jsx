@@ -40,20 +40,38 @@ export const getServerSideProps = withSessionSsr(
       };
     }
 
-    if (user === undefined) {
+    if (!recipe.public) {
+      if (user && user.id === recipe.userId) {
+        return {
+          props: {
+            user,
+            recipe,
+          },
+        };
+      }
+
       return {
-        props: {
-          user: null,
-          recipe,
+        redirect: {
+          destination: '/',
+          permanent: false,
         },
       };
+    } else {
+      if (user === undefined) {
+        return {
+          props: {
+            user: null,
+            recipe,
+          },
+        };
+      } else {
+        return {
+          props: {
+            user,
+            recipe,
+          },
+        };
+      }
     }
-
-    return {
-      props: {
-        user,
-        recipe,
-      },
-    };
   }
 );

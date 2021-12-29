@@ -44,7 +44,7 @@ export default function EditRecipe({ user, recipe }) {
 
   return (
     <Layout>
-      <Seo title='Add recipe' />
+      <Seo title='Edit recipe' />
       <Header user={user} />
       <main>
         <section>
