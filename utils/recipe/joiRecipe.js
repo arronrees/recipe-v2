@@ -6,3 +6,9 @@ export const joiRecipe = Joi.object({
   public: Joi.boolean().required(),
   userId: Joi.any(),
 }).required();
+
+export const joiRecipeEdit = Joi.object({
+  name: Joi.string().required(),
+  image: Joi.string().required(),
+  public: Joi.boolean().required(),
+}).required();

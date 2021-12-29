@@ -1,13 +1,13 @@
-import { withSessionSsr } from '../../utils/iron/withSession';
+import { withSessionSsr } from '../../../utils/iron/withSession';
 
-import Layout from '../../components/Layout';
-import Seo from '../../components/Seo';
-import Header from '../../components/Header';
+import Layout from '../../../components/Layout';
+import Seo from '../../../components/Seo';
+import Header from '../../../components/Header';
 
 import { useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 
-export default function AddRecipe({ user }) {
+export default function EditRecipe({ user, recipe }) {
   const router = useRouter();
 
   const [recipeError, setRecipeError] = useState(null);
@@ -16,26 +16,25 @@ export default function AddRecipe({ user }) {
   const recipeImage = useRef(null);
   const recipePublic = useRef(null);
 
-  async function sendRecipe(e) {
+  async function updateRecipe(e) {
     e.preventDefault();
 
-    let recipe = {
+    let updatedRecipe = {
       name: recipeName.current.value,
       image: recipeImage.current.value,
-      userId: user.id,
       public: recipePublic.current.value,
     };
 
-    const res = await fetch('/api/recipe/add', {
+    const res = await fetch(`/api/recipe/edit?id=${recipe.id}`, {
       method: 'POST',
-      body: JSON.stringify(recipe),
+      body: JSON.stringify(updatedRecipe),
       headers: { 'Content-Type': 'application/json' },
     });
 
     const data = await res.json();
 
-    if (data.message === 'Recipe created successfully') {
-      router.push('/profile');
+    if (data.message === 'Recipe updated successfully') {
+      router.reload();
     } else if (data.message) {
       setRecipeError(data.message);
     }
@@ -49,9 +48,9 @@ export default function AddRecipe({ user }) {
       <Header user={user} />
       <main>
         <section>
-          <h1>Add recipe</h1>
+          <h1>Edit {recipe.name}</h1>
           <form
-            onSubmit={sendRecipe}
+            onSubmit={updateRecipe}
             className='px-4 py-16 grid gap-4 sm:max-w-lg sm:mx-auto'
           >
             <div>
@@ -68,6 +67,7 @@ export default function AddRecipe({ user }) {
                 type='text'
                 name='recipeName'
                 id='recipeName'
+                defaultValue={recipe.name}
               />
             </div>
             <div>
@@ -84,6 +84,7 @@ export default function AddRecipe({ user }) {
                 type='text'
                 name='recipeImage'
                 id='recipeImage'
+                defaultValue={recipe.image}
               />
             </div>
             <div>
@@ -101,8 +102,17 @@ export default function AddRecipe({ user }) {
                 name='recipePublic'
                 id='recipePublic'
               >
-                <option value={false}>No</option>
-                <option value={true}>Yes</option>
+                {recipe.public ? (
+                  <>
+                    <option value={true}>Yes</option>
+                    <option value={false}>No</option>
+                  </>
+                ) : (
+                  <>
+                    <option value={false}>No</option>
+                    <option value={true}>Yes</option>
+                  </>
+                )}
               </select>
             </div>
             <div>
@@ -110,7 +120,7 @@ export default function AddRecipe({ user }) {
                 type='submit'
                 className='py-2 px-4 transition border border-transparent shadow-sm  font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
               >
-                Add recipe
+                Edit recipe
               </button>
             </div>
             {recipeError && (
@@ -126,7 +136,7 @@ export default function AddRecipe({ user }) {
 }
 
 export const getServerSideProps = withSessionSsr(
-  async function getServerSideProps({ req, res }) {
+  async function getServerSideProps({ req, res, params }) {
     const user = req.session.user;
 
     if (user === undefined) {
@@ -138,9 +148,35 @@ export const getServerSideProps = withSessionSsr(
       };
     }
 
+    const { id } = params;
+
+    const data = await fetch(
+      `http://localhost:3000/api/recipe/findSingleRecipe?id=${id}`
+    );
+    const recipe = await data.json();
+
+    if (data.status === 400) {
+      return {
+        redirect: {
+          destination: '/',
+          permanent: false,
+        },
+      };
+    }
+
+    if (user.id === recipe.userId) {
+      return {
+        props: {
+          user,
+          recipe,
+        },
+      };
+    }
+
     return {
-      props: {
-        user,
+      redirect: {
+        destination: '/',
+        permanent: false,
       },
     };
   }

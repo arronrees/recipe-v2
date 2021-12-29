@@ -8,7 +8,7 @@ export default function RecipeItem({ recipe, user }) {
         <div className='flex justify-between items-center absolute z-20 w-full bottom-0 p-4 text-white'>
           <h1 className='font-semibold text-2xl'>{recipe.name}</h1>
           {user && user.id === recipe.userId && (
-            <Link href='/'>
+            <Link href={`/recipes/edit/${recipe.id}`}>
               <a className='rounded-md px-4 py-2 bg-teal-700 hover:bg-teal-800 active:bg-teal-900 transition'>
                 Edit
               </a>

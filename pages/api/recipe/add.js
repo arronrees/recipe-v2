@@ -1,11 +1,8 @@
 import { Recipe } from '../../../utils/db/models/Recipe';
 import { User } from '../../../utils/db/models/USer';
 import { joiRecipe } from '../../../utils/recipe/joiRecipe';
-import { withSessionRoute } from '../../../utils/iron/withSession';
 
-export default withSessionRoute(addRecipe);
-
-async function addRecipe(req, res) {
+export default async function addRecipe(req, res) {
   const { body } = req;
 
   // validate request body
