@@ -13,7 +13,7 @@ export default function Add({ user, recipe }) {
       <main>
         <section>
           <h1>View recipe</h1>
-          <RecipeItem recipe={recipe} />
+          <RecipeItem recipe={recipe} user={user} />
         </section>
       </main>
     </Layout>
