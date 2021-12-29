@@ -34,7 +34,7 @@ export default function EditRecipe({ user, recipe }) {
     };
 
     const res = await fetch(`/api/recipe/edit?id=${recipe.id}`, {
-      method: 'POST',
+      method: 'PUT',
       body: JSON.stringify(updatedRecipe),
       headers: { 'Content-Type': 'application/json' },
     });
