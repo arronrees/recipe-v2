@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-export default function NavMenu({ navOpen, setNavOpen }) {
+export default function NavMenu({ user, navOpen, setNavOpen }) {
   return (
     <nav
       className={`text-gray-700 bg-gray-100 absolute w-10/12 h-screen top-0 left-0 sm:w-9/12 md:w-8/12 shadow-2xl transform transition duration-500 z-50 
@@ -25,16 +25,30 @@ export default function NavMenu({ navOpen, setNavOpen }) {
         </svg>
       </button>
       <ul className='px-4 pt-24'>
-        <li className='font-semibold mb-2'>
-          <Link href='/profile'>
-            <a>My Account</a>
-          </Link>
-        </li>
-        <li className='font-semibold mb-2'>
-          <Link href='/recipes/add'>
-            <a>Add Recipe</a>
-          </Link>
-        </li>
+        {user && (
+          <>
+            <li className='font-semibold mb-2'>
+              <Link href='/profile'>
+                <a>My Account</a>
+              </Link>
+            </li>
+            <li className='font-semibold mb-2'>
+              <Link href='/profile/my-details'>
+                <a>My Details</a>
+              </Link>
+            </li>
+            <li className='font-semibold mb-2'>
+              <Link href='/profile/my-recipes'>
+                <a>My Recipes</a>
+              </Link>
+            </li>
+            <li className='font-semibold mb-2'>
+              <Link href='/recipes/add'>
+                <a>Add Recipe</a>
+              </Link>
+            </li>
+          </>
+        )}
       </ul>
     </nav>
   );

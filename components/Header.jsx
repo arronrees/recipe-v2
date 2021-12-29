@@ -14,7 +14,7 @@ export default function Header({ user }) {
           <a>Recipes</a>
         </Link>
       </h1>
-      <NavMenu navOpen={navOpen} setNavOpen={setNavOpen} />
+      <NavMenu navOpen={navOpen} setNavOpen={setNavOpen} user={user} />
       <Navbar user={user} />
       <button
         type='button'

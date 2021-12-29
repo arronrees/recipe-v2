@@ -3,7 +3,7 @@ import Link from 'next/link';
 export default function Menu() {
   return (
     <ul>
-      <li>
+      {/* <li>
         <Link href='/profile/my-details'>
           <a>My Details</a>
         </Link>
@@ -17,7 +17,7 @@ export default function Menu() {
         <Link href='/profile/saved-recipes'>
           <a>Saved Recipes</a>
         </Link>
-      </li>
+      </li> */}
     </ul>
   );
 }
