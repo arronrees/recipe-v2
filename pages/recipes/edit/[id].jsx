@@ -14,6 +14,10 @@ export default function EditRecipe({ user, recipe }) {
 
   const recipeName = useRef(null);
   const recipeImage = useRef(null);
+  const recipePrepTime = useRef(null);
+  const recipeCookTime = useRef(null);
+  const recipeServes = useRef(null);
+  const recipeDifficulty = useRef(null);
   const recipePublic = useRef(null);
 
   async function updateRecipe(e) {
@@ -22,6 +26,10 @@ export default function EditRecipe({ user, recipe }) {
     let updatedRecipe = {
       name: recipeName.current.value,
       image: recipeImage.current.value,
+      prepTime: recipePrepTime.current.value,
+      cookTime: recipeCookTime.current.value,
+      serves: recipeServes.current.value,
+      difficulty: recipeDifficulty.current.value,
       public: recipePublic.current.value,
     };
 
@@ -92,27 +100,91 @@ export default function EditRecipe({ user, recipe }) {
                 className='block pb-2 font-medium text-gray-500'
                 htmlFor='recipePublic'
               >
+                Prep Time (minutes)
+              </label>
+              <input
+                className='block box-border w-full border-2 border-gray-300 border-solid rounded-md p-2 focus:outline-none
+            focus:ring-indigo-500 focus:border-indigo-500 shadow-sm'
+                ref={recipePrepTime}
+                type='text'
+                name='recipePrepTime'
+                id='recipePrepTime'
+                defaultValue={recipe.prepTime}
+              />
+            </div>
+            <div>
+              <label
+                className='block pb-2 font-medium text-gray-500'
+                htmlFor='recipePublic'
+              >
+                Cook Time (minutes)
+              </label>
+              <input
+                className='block box-border w-full border-2 border-gray-300 border-solid rounded-md p-2 focus:outline-none
+            focus:ring-indigo-500 focus:border-indigo-500 shadow-sm'
+                ref={recipeCookTime}
+                type='text'
+                name='recipeCookTime'
+                id='recipeCookTime'
+                defaultValue={recipe.cookTime}
+              />
+            </div>
+            <div>
+              <label
+                className='block pb-2 font-medium text-gray-500'
+                htmlFor='recipePublic'
+              >
+                Serves (people)
+              </label>
+              <input
+                className='block box-border w-full border-2 border-gray-300 border-solid rounded-md p-2 focus:outline-none
+            focus:ring-indigo-500 focus:border-indigo-500 shadow-sm'
+                ref={recipeServes}
+                type='text'
+                name='recipeServes'
+                id='recipeServes'
+                defaultValue={recipe.serves}
+              />
+            </div>
+            <div>
+              <label
+                className='block pb-2 font-medium text-gray-500'
+                htmlFor='recipePublic'
+              >
+                Difficulty
+              </label>
+              <select
+                className='block box-border w-full border-2 border-gray-300 border-solid rounded-md p-2 focus:outline-none
+            focus:ring-indigo-500 focus:border-indigo-500 shadow-sm'
+                ref={recipeDifficulty}
+                name='recipeDifficulty'
+                id='recipeDifficulty'
+                defaultValue={recipe.difficulty}
+              >
+                <option value='easy' defaultValue>
+                  Easy
+                </option>
+                <option value='medium'>Medium</option>
+                <option value='hard'>Hard</option>
+              </select>
+            </div>
+            <div>
+              <label
+                className='block pb-2 font-medium text-gray-500'
+                htmlFor='recipePublic'
+              >
                 Make Public?
               </label>
               <select
                 className='block box-border w-full border-2 border-gray-300 border-solid rounded-md p-2 focus:outline-none
             focus:ring-indigo-500 focus:border-indigo-500 shadow-sm'
                 ref={recipePublic}
-                type='password'
                 name='recipePublic'
                 id='recipePublic'
+                defaultValue={recipe.public}
               >
-                {recipe.public ? (
-                  <>
-                    <option value={true}>Yes</option>
-                    <option value={false}>No</option>
-                  </>
-                ) : (
-                  <>
-                    <option value={false}>No</option>
-                    <option value={true}>Yes</option>
-                  </>
-                )}
+                <option value={false}>No</option>
+                <option value={true}>Yes</option>
               </select>
             </div>
             <div>
@@ -120,7 +192,7 @@ export default function EditRecipe({ user, recipe }) {
                 type='submit'
                 className='py-2 px-4 transition border border-transparent shadow-sm  font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
               >
-                Edit recipe
+                Add recipe
               </button>
             </div>
             {recipeError && (

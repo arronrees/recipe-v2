@@ -24,7 +24,7 @@ export default function RecipeItem({ recipe, user }) {
           />
         </figure>
         <div
-          className='absolute z-10 w-full h-full rounded-md'
+          className='absolute z-10 w-full h-full'
           style={{
             background: 'linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.8))',
           }}

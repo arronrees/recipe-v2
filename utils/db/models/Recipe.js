@@ -25,6 +25,19 @@ export const Recipe = db.define('recipe', {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
   },
+  prepTime: {
+    type: DataTypes.INTEGER,
+  },
+  cookTime: {
+    type: DataTypes.INTEGER,
+  },
+  serves: {
+    type: DataTypes.INTEGER,
+  },
+  difficulty: {
+    type: DataTypes.STRING(255),
+    allowNull: false,
+  },
 });
 
 // Recipe.sync({ force: false }).then(() => {

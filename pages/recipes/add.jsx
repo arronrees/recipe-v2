@@ -14,6 +14,10 @@ export default function AddRecipe({ user }) {
 
   const recipeName = useRef(null);
   const recipeImage = useRef(null);
+  const recipePrepTime = useRef(null);
+  const recipeCookTime = useRef(null);
+  const recipeServes = useRef(null);
+  const recipeDifficulty = useRef(null);
   const recipePublic = useRef(null);
 
   async function sendRecipe(e) {
@@ -23,6 +27,10 @@ export default function AddRecipe({ user }) {
       name: recipeName.current.value,
       image: recipeImage.current.value,
       userId: user.id,
+      prepTime: recipePrepTime.current.value,
+      cookTime: recipeCookTime.current.value,
+      serves: recipeServes.current.value,
+      difficulty: recipeDifficulty.current.value,
       public: recipePublic.current.value,
     };
 
@@ -91,13 +99,79 @@ export default function AddRecipe({ user }) {
                 className='block pb-2 font-medium text-gray-500'
                 htmlFor='recipePublic'
               >
+                Prep Time (minutes)
+              </label>
+              <input
+                className='block box-border w-full border-2 border-gray-300 border-solid rounded-md p-2 focus:outline-none
+            focus:ring-indigo-500 focus:border-indigo-500 shadow-sm'
+                ref={recipePrepTime}
+                type='text'
+                name='recipePrepTime'
+                id='recipePrepTime'
+              />
+            </div>
+            <div>
+              <label
+                className='block pb-2 font-medium text-gray-500'
+                htmlFor='recipePublic'
+              >
+                Cook Time (minutes)
+              </label>
+              <input
+                className='block box-border w-full border-2 border-gray-300 border-solid rounded-md p-2 focus:outline-none
+            focus:ring-indigo-500 focus:border-indigo-500 shadow-sm'
+                ref={recipeCookTime}
+                type='text'
+                name='recipeCookTime'
+                id='recipeCookTime'
+              />
+            </div>
+            <div>
+              <label
+                className='block pb-2 font-medium text-gray-500'
+                htmlFor='recipePublic'
+              >
+                Serves (people)
+              </label>
+              <input
+                className='block box-border w-full border-2 border-gray-300 border-solid rounded-md p-2 focus:outline-none
+            focus:ring-indigo-500 focus:border-indigo-500 shadow-sm'
+                ref={recipeServes}
+                type='text'
+                name='recipeServes'
+                id='recipeServes'
+              />
+            </div>
+            <div>
+              <label
+                className='block pb-2 font-medium text-gray-500'
+                htmlFor='recipePublic'
+              >
+                Difficulty
+              </label>
+              <select
+                className='block box-border w-full border-2 border-gray-300 border-solid rounded-md p-2 focus:outline-none
+            focus:ring-indigo-500 focus:border-indigo-500 shadow-sm'
+                ref={recipeDifficulty}
+                name='recipeDifficulty'
+                id='recipeDifficulty'
+              >
+                <option value='easy'>Easy</option>
+                <option value='medium'>Medium</option>
+                <option value='hard'>Hard</option>
+              </select>
+            </div>
+            <div>
+              <label
+                className='block pb-2 font-medium text-gray-500'
+                htmlFor='recipePublic'
+              >
                 Make Public?
               </label>
               <select
                 className='block box-border w-full border-2 border-gray-300 border-solid rounded-md p-2 focus:outline-none
             focus:ring-indigo-500 focus:border-indigo-500 shadow-sm'
                 ref={recipePublic}
-                type='password'
                 name='recipePublic'
                 id='recipePublic'
               >

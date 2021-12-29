@@ -89,13 +89,14 @@ export default function MyDetails({ user }) {
       <Seo title='My Details' />
       <Header user={user} />
       <main>
+        <Menu />
         <section>
           <h1>
             Welcome, {user.firstName} {user.lastName}
           </h1>
           <form
             onSubmit={sendUserDetails}
-            className='px-4 py-16 grid gap-4 sm:max-w-lg sm:mx-auto'
+            className='px-4 py-4 grid gap-4 sm:max-w-lg sm:mx-auto'
           >
             <div>
               <label
@@ -164,7 +165,7 @@ export default function MyDetails({ user }) {
           </form>
           <form
             onSubmit={sendPassword}
-            className='px-4 py-16 grid gap-4 sm:max-w-lg sm:mx-auto'
+            className='px-4 py-4 grid gap-4 sm:max-w-lg sm:mx-auto'
           >
             <div>
               <label
@@ -213,7 +214,6 @@ export default function MyDetails({ user }) {
             )}
           </form>
         </section>
-        <Menu />
       </main>
     </Layout>
   );

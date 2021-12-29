@@ -25,9 +25,14 @@ export default function NavMenu({ navOpen, setNavOpen }) {
         </svg>
       </button>
       <ul className='px-4 pt-24'>
-        <li className='font-semibold'>
+        <li className='font-semibold mb-2'>
           <Link href='/profile'>
             <a>My Account</a>
+          </Link>
+        </li>
+        <li className='font-semibold mb-2'>
+          <Link href='/recipes/add'>
+            <a>Add Recipe</a>
           </Link>
         </li>
       </ul>
