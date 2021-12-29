@@ -1,13 +1,16 @@
 import { SavedRecipe } from '../../../utils/db/models/SavedRecipe';
-import { User } from '../../../utils/db/models/User';
 import { withSessionRoute } from '../../../utils/iron/withSession';
 
-export default withSessionRoute(saveRecipe);
+export default withSessionRoute(unSaveRecipe);
 
-async function saveRecipe(req, res) {
+async function unSaveRecipe(req, res) {
   const { userId, recipeId } = req.query;
 
-  const savedRecipe = await SavedRecipe.create({ userId, recipeId });
+  const unSavedRecipe = await SavedRecipe.destroy({
+    where: { userId, recipeId },
+  });
+
+  console.log(unSavedRecipe);
 
   const user = req.session.user;
 
@@ -24,6 +27,6 @@ async function saveRecipe(req, res) {
   req.session.user = userToshow;
   await req.session.save();
 
-  res.json({ message: 'Recipe saved successfully' });
+  res.json({ message: 'Recipe unsaved successfully' });
   return;
 }

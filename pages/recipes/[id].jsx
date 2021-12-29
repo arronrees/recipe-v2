@@ -8,7 +8,7 @@ import RecipeItem from '../../components/recipes/RecipeItem';
 export default function Add({ user, recipe }) {
   return (
     <Layout>
-      <Seo title='Add recipe' />
+      <Seo title={recipe.name} />
       <Header user={user} />
       <main>
         <section>

@@ -2,6 +2,8 @@ import { joiUserLogin } from '../../../utils/auth/joiUser';
 import { withSessionRoute } from '../../../utils/iron/withSession';
 import { User } from '../../../utils/db/models/User';
 import { checkPassword } from '../../../utils/auth/passwordUtils';
+import { SavedRecipe } from '../../../utils/db/models/SavedRecipe';
+import { Recipe } from '../../../utils/db/models/Recipe';
 
 export default withSessionRoute(signIn);
 
@@ -41,9 +43,19 @@ async function signIn(req, res) {
       .status(400)
       .json({ message: 'Incorrect details, please check and try again' });
   } else {
-    const userToshow = { ...user.dataValues, password: 'hidden' };
-    req.session.user = userToshow;
+    const saved = await SavedRecipe.findAll({
+      where: { userId: user.id },
+    });
 
+    let savedRecipes = [];
+
+    saved.forEach((recipe) => {
+      savedRecipes.push(recipe.recipeId);
+    });
+
+    const userToshow = { ...user.dataValues, password: 'hidden', savedRecipes };
+
+    req.session.user = userToshow;
     await req.session.save();
 
     res.status(200).json({ loggedIn: true });

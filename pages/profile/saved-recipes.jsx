@@ -10,7 +10,7 @@ import RecipeGridItem from '../../components/recipes/RecipeGridItem';
 export default function MyRecipes({ user, recipes }) {
   return (
     <Layout>
-      <Seo title='My Details' />
+      <Seo title='Saved Recipes' />
       <Header user={user} />
       <main>
         <Menu />
@@ -45,7 +45,7 @@ export const getServerSideProps = withSessionSsr(
 
     try {
       const data = await fetch(
-        `http://localhost:3000/api/recipe/findUserRecipes?userId=${user.id}`
+        `http://localhost:3000/api/recipe/findUserSavedRecipes?userId=${user.id}`
       );
       const recipes = await data.json();
 
