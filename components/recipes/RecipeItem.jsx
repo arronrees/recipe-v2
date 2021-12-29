@@ -43,7 +43,7 @@ export default function RecipeItem({ recipe, user }) {
   }
 
   return (
-    <article>
+    <article className='relative'>
       <div className='h-56 relative'>
         <h1 className='font-semibold text-2xl absolute z-20 w-full bottom-0 p-4 pr-20 text-white'>
           {recipe.name}
@@ -100,24 +100,32 @@ export default function RecipeItem({ recipe, user }) {
           }}
         ></div>
       </div>
-
       {user && user.id === recipe.userId && (
-        <div className='flex justify-end items-center text-white p-2'>
+        <div className='flex justify-end text-white p-2 absolute top-0 right-0 z-20'>
           <Link href={`/recipes/edit/${recipe.id}`}>
-            <a className='rounded-md px-4 py-2 bg-teal-700 hover:bg-teal-800 active:bg-teal-900 transition'>
+            <a className='rounded-md px-4 py-2 bg-teal-700 hover:bg-teal-800 active:bg-teal-900 transition shadow-sm'>
               Edit
             </a>
           </Link>
           <button
             type='button'
-            className='ml-2 rounded-md px-4 py-2 bg-red-700 hover:bg-red-800 active:bg-red-900 transition'
+            className='ml-2 rounded-md px-4 py-2 bg-red-700 hover:bg-red-800 active:bg-red-900 transition shadow-sm'
             onClick={deleteRecipe}
           >
             Delete
           </button>
         </div>
       )}
-      <h6>{recipe.userName}</h6>
+      <section className='p-4'>
+        <h6 className='text-gray-500 text-sm'>
+          <span>By </span>
+          <Link href={`/recipes/user/${recipe.userId}`}>
+            <a className='font-semibold text-rose-500 border-b border-solid border-transparent transition hover:border-rose-600'>
+              {recipe.userName}
+            </a>
+          </Link>
+        </h6>
+      </section>
     </article>
   );
 }

@@ -54,6 +54,16 @@ export default function NavMenu({ user, navOpen, setNavOpen }) {
             </li>
           </>
         )}
+        <li className='font-semibold mb-2'>
+          <Link href='/auth/sign-in'>
+            <a>Sign In</a>
+          </Link>
+        </li>
+        <li className='font-semibold mb-2'>
+          <Link href='/auth/sign-up'>
+            <a>Sign Up</a>
+          </Link>
+        </li>
       </ul>
     </nav>
   );

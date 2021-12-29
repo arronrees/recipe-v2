@@ -12,7 +12,6 @@ export default function Add({ user, recipe }) {
       <Header user={user} />
       <main>
         <section>
-          <h1>View recipe</h1>
           <RecipeItem recipe={recipe} user={user} />
         </section>
       </main>

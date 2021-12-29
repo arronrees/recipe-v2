@@ -18,7 +18,7 @@ export default async function addRecipe(req, res) {
   const recipe = {
     ...body,
     userName: `${user.firstName} ${user.lastName}`,
-    totalTime: parseFloat(prepTime) + parseFloat(cookTime),
+    totalTime: parseFloat(body.prepTime) + parseFloat(body.cookTime),
   };
   const createdRecipe = await Recipe.create(recipe);
 
