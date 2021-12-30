@@ -6,6 +6,14 @@ module.exports = {
       title: ['Merriweather', 'serif'],
       body: ['"Titillium Web"', 'sans-serif'],
     },
+    screens: {
+      xs: '560px',
+      sm: '640px',
+      md: '800px',
+      lg: '1024px',
+      xl: '1280px',
+      '2xl': '1536px',
+    },
   },
   variants: {
     extend: {

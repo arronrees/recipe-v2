@@ -23,11 +23,16 @@ export default function Navbar({ user }) {
           </Link>
         </li>
       ) : (
-        <li onClick={handleSignOut}>
-          <a className='transition py-2 px-4 border border-transparent shadow-sm  font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 cursor-pointer'>
-            Sign Out
-          </a>
-        </li>
+        <>
+          <li className='mr-4 text-gray-500 font-semibold'>
+            {user.firstName} {user.lastName}
+          </li>
+          <li onClick={handleSignOut}>
+            <a className='transition py-2 px-4 border border-transparent shadow-sm  font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 cursor-pointer'>
+              Sign Out
+            </a>
+          </li>
+        </>
       )}
     </ul>
   );
