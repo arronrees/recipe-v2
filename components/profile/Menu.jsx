@@ -2,22 +2,28 @@ import Link from 'next/link';
 
 export default function Menu() {
   return (
-    <ul>
-      {/* <li>
+    <ul className='grid gap-4 pb-8'>
+      <li>
         <Link href='/profile/my-details'>
-          <a>My Details</a>
+          <a className='block p-4 border-b border-gray-300 font-semibold text-gray-600 hover:text-gray-800 hover:border-gray-700 transition duration-300'>
+            My Details
+          </a>
         </Link>
       </li>
       <li>
         <Link href='/profile/my-recipes'>
-          <a>My Recipes</a>
+          <a className='block p-4 border-b border-gray-300 font-semibold text-gray-600 hover:text-gray-800 hover:border-gray-700 transition duration-300'>
+            My Recipes
+          </a>
         </Link>
       </li>
       <li>
         <Link href='/profile/saved-recipes'>
-          <a>Saved Recipes</a>
+          <a className='block p-4 border-b border-gray-300 font-semibold text-gray-600 hover:text-gray-800 hover:border-gray-700 transition duration-300'>
+            Saved Recipes
+          </a>
         </Link>
-      </li> */}
+      </li>
     </ul>
   );
 }

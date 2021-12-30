@@ -92,132 +92,148 @@ export default function MyDetails({ user }) {
       <Seo title='My Details' />
       <Header user={user} />
       <main>
-        <Menu />
         <section>
-          <h1>
-            Welcome, {user.firstName} {user.lastName}
-          </h1>
-          <form
-            onSubmit={sendUserDetails}
-            className='px-4 py-4 grid gap-4 sm:max-w-lg sm:mx-auto'
-          >
-            <div>
-              <label
-                className='block pb-2 font-medium text-gray-500'
-                htmlFor='password'
+          <div className='flex items-center justify-between px-8 pb-4'>
+            <h1 className='font-bold text-xl text-gray-800'>
+              Chef {user.firstName}
+            </h1>
+            <div className='flex items-center justify-center bg-rose-400 rounded-full w-16 h-16 p-4'>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                width='16'
+                height='16'
+                fill='#fff'
+                viewBox='0 0 16 16'
+                className='w-full h-full'
               >
-                First Name
-              </label>
-              <input
-                className='block box-border w-full border-2 border-gray-300 border-solid rounded-md p-2 focus:outline-none
+                <path d='M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z' />
+              </svg>
+            </div>
+          </div>
+          <div className='p-4'>
+            <Menu />
+            <form
+              onSubmit={sendUserDetails}
+              className='py-4 pt-8 grid gap-4 sm:max-w-lg sm:mx-auto'
+            >
+              <div>
+                <label
+                  className='block pb-2 font-medium text-gray-500'
+                  htmlFor='password'
+                >
+                  First Name
+                </label>
+                <input
+                  className='block box-border w-full border-2 border-gray-300 border-solid rounded-md p-2 focus:outline-none
             focus:ring-indigo-500 focus:border-indigo-500 shadow-sm'
-                ref={firstName}
-                type='text'
-                name='text'
-                id='firstName'
-                defaultValue={user.firstName}
-              />
-            </div>
-            <div>
-              <label
-                className='block pb-2 font-medium text-gray-500'
-                htmlFor='password'
-              >
-                Last Name
-              </label>
-              <input
-                className='block box-border w-full border-2 border-gray-300 border-solid rounded-md p-2 focus:outline-none
-            focus:ring-indigo-500 focus:border-indigo-500 shadow-sm'
-                ref={lastName}
-                type='text'
-                name='text'
-                id='lastName'
-                defaultValue={user.lastName}
-              />
-            </div>
-            <div>
-              <label
-                className='block pb-2 font-medium text-gray-500'
-                htmlFor='email'
-              >
-                Email
-              </label>
-              <input
-                className='block box-border w-full border-2  border-gray-300 border-solid rounded-md p-2 focus:outline-none
-            focus:ring-indigo-500 focus:border-indigo-500 shadow-sm'
-                ref={email}
-                type='text'
-                name='email'
-                id='email'
-                defaultValue={user.email}
-              />
-            </div>
-            <div>
-              <button
-                type='submit'
-                className='py-2 px-4 transition border border-transparent shadow-sm  font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
-              >
-                Update Details
-              </button>
-            </div>
-            {detailsError && (
-              <div className='error text-base text-red-500 font-medium py-2 px-4'>
-                {detailsError}
+                  ref={firstName}
+                  type='text'
+                  name='text'
+                  id='firstName'
+                  defaultValue={user.firstName}
+                />
               </div>
-            )}
-          </form>
-          <form
-            onSubmit={sendPassword}
-            className='px-4 py-4 grid gap-4 sm:max-w-lg sm:mx-auto'
-          >
-            <div>
-              <label
-                className='block pb-2 font-medium text-gray-500'
-                htmlFor='currPassword'
-              >
-                Current Password
-              </label>
-              <input
-                className='block box-border w-full border-2 border-gray-300 border-solid rounded-md p-2 focus:outline-none
+              <div>
+                <label
+                  className='block pb-2 font-medium text-gray-500'
+                  htmlFor='password'
+                >
+                  Last Name
+                </label>
+                <input
+                  className='block box-border w-full border-2 border-gray-300 border-solid rounded-md p-2 focus:outline-none
             focus:ring-indigo-500 focus:border-indigo-500 shadow-sm'
-                ref={currPassword}
-                type='password'
-                name='currPassword'
-                id='currPassword'
-                defaultValue=''
-              />
-            </div>
-            <div>
-              <label
-                className='block pb-2 font-medium text-gray-500'
-                htmlFor='newPassword'
-              >
-                New Password
-              </label>
-              <input
-                className='block box-border w-full border-2 border-gray-300 border-solid rounded-md p-2 focus:outline-none
-            focus:ring-indigo-500 focus:border-indigo-500 shadow-sm'
-                ref={newPassword}
-                type='password'
-                name='newPassword'
-                id='newPassword'
-                defaultValue=''
-              />
-            </div>
-            <div>
-              <button
-                type='submit'
-                className='py-2 px-4 transition border border-transparent shadow-sm  font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
-              >
-                Update Password
-              </button>
-            </div>
-            {passwordError && (
-              <div className='error text-base text-red-500 font-medium py-2 px-4'>
-                {passwordError}
+                  ref={lastName}
+                  type='text'
+                  name='text'
+                  id='lastName'
+                  defaultValue={user.lastName}
+                />
               </div>
-            )}
-          </form>
+              <div>
+                <label
+                  className='block pb-2 font-medium text-gray-500'
+                  htmlFor='email'
+                >
+                  Email
+                </label>
+                <input
+                  className='block box-border w-full border-2  border-gray-300 border-solid rounded-md p-2 focus:outline-none
+            focus:ring-indigo-500 focus:border-indigo-500 shadow-sm'
+                  ref={email}
+                  type='text'
+                  name='email'
+                  id='email'
+                  defaultValue={user.email}
+                />
+              </div>
+              <div>
+                <button
+                  type='submit'
+                  className='py-2 px-4 transition border border-transparent shadow-sm  font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+                >
+                  Update Details
+                </button>
+              </div>
+              {detailsError && (
+                <div className='error text-base text-red-500 font-medium py-2 px-4'>
+                  {detailsError}
+                </div>
+              )}
+            </form>
+            <form
+              onSubmit={sendPassword}
+              className='py-4 grid gap-4 sm:max-w-lg sm:mx-auto'
+            >
+              <div>
+                <label
+                  className='block pb-2 font-medium text-gray-500'
+                  htmlFor='currPassword'
+                >
+                  Current Password
+                </label>
+                <input
+                  className='block box-border w-full border-2 border-gray-300 border-solid rounded-md p-2 focus:outline-none
+            focus:ring-indigo-500 focus:border-indigo-500 shadow-sm'
+                  ref={currPassword}
+                  type='password'
+                  name='currPassword'
+                  id='currPassword'
+                  defaultValue=''
+                />
+              </div>
+              <div>
+                <label
+                  className='block pb-2 font-medium text-gray-500'
+                  htmlFor='newPassword'
+                >
+                  New Password
+                </label>
+                <input
+                  className='block box-border w-full border-2 border-gray-300 border-solid rounded-md p-2 focus:outline-none
+            focus:ring-indigo-500 focus:border-indigo-500 shadow-sm'
+                  ref={newPassword}
+                  type='password'
+                  name='newPassword'
+                  id='newPassword'
+                  defaultValue=''
+                />
+              </div>
+              <div>
+                <button
+                  type='submit'
+                  className='py-2 px-4 transition border border-transparent shadow-sm  font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+                >
+                  Update Password
+                </button>
+              </div>
+              {passwordError && (
+                <div className='error text-base text-red-500 font-medium py-2 px-4'>
+                  {passwordError}
+                </div>
+              )}
+            </form>
+          </div>
         </section>
       </main>
     </Layout>

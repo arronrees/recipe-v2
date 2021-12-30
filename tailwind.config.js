@@ -3,7 +3,7 @@ module.exports = {
   // darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
-      title: ['Merriweather', 'serif'],
+      title: ['Arvo', 'serif'],
       body: ['"Titillium Web"', 'sans-serif'],
     },
     screens: {

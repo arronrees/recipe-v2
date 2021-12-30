@@ -10,10 +10,8 @@ export default async function findUserSavedRecipes(req, res) {
 
   for (let i = 0; i < savedRecipes.length; i++) {
     const r = await Recipe.findOne({ where: { id: savedRecipes[i].recipeId } });
-    recipes.push(r);
+    if (r) recipes.push(r);
   }
-
-  console.log(recipes);
 
   res.json(recipes);
 }

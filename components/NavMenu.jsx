@@ -33,21 +33,6 @@ export default function NavMenu({ user, navOpen, setNavOpen }) {
               </Link>
             </li>
             <li className='font-semibold mb-2'>
-              <Link href='/profile/my-details'>
-                <a>My Details</a>
-              </Link>
-            </li>
-            <li className='font-semibold mb-2'>
-              <Link href='/profile/my-recipes'>
-                <a>My Recipes</a>
-              </Link>
-            </li>
-            <li className='font-semibold mb-2'>
-              <Link href='/profile/saved-recipes'>
-                <a>Saved Recipes</a>
-              </Link>
-            </li>
-            <li className='font-semibold mb-2'>
               <Link href='/recipes/add'>
                 <a>Add Recipe</a>
               </Link>

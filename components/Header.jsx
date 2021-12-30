@@ -8,8 +8,8 @@ export default function Header({ user }) {
   const [navOpen, setNavOpen] = useState(false);
 
   return (
-    <header className='flex items-center justify-between p-4 relative'>
-      <h1 className='font-title'>
+    <header className='flex items-center justify-between p-4 pb-6 relative'>
+      <h1 className='font-title font-bold text-xl'>
         <Link href='/'>
           <a>Recipe App</a>
         </Link>
