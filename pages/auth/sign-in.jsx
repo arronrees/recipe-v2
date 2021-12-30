@@ -1,3 +1,5 @@
+import { withSessionSsr } from '../../utils/iron/withSession';
+
 import { useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -6,7 +8,7 @@ import Layout from '../../components/Layout';
 import Header from '../../components/Header';
 import Seo from '../../components/Seo';
 
-export default function SignIn({ crsfToken }) {
+export default function SignIn({ user }) {
   const email = useRef(null);
   const password = useRef(null);
 
@@ -42,7 +44,7 @@ export default function SignIn({ crsfToken }) {
   return (
     <Layout>
       <Seo title='Sign In' />
-      <Header />
+      <Header user={user} />
       <form
         onSubmit={sendData}
         className='px-4 py-16 grid gap-4 sm:max-w-lg sm:mx-auto'
@@ -104,3 +106,24 @@ export default function SignIn({ crsfToken }) {
     </Layout>
   );
 }
+
+export const getServerSideProps = withSessionSsr(
+  async function getServerSideProps({ req, res }) {
+    const user = req.session.user;
+
+    if (user) {
+      return {
+        redirect: {
+          destination: '/',
+          permanent: false,
+        },
+      };
+    }
+
+    return {
+      props: {
+        user: null,
+      },
+    };
+  }
+);
