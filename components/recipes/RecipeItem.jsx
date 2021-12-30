@@ -117,7 +117,7 @@ export default function RecipeItem({ recipe, user }) {
         </div>
       )}
       <section className='p-4'>
-        <h6 className='text-gray-500 text-sm'>
+        <h6 className='text-gray-500 text-sm mb-2'>
           <span>By </span>
           <Link href={`/recipes/user/${recipe.userId}`}>
             <a className='font-semibold text-rose-500 border-b border-solid border-transparent transition hover:border-rose-600'>
@@ -125,6 +125,15 @@ export default function RecipeItem({ recipe, user }) {
             </a>
           </Link>
         </h6>
+        <div className='flex'>
+          {recipe.categories.map((cat) => (
+            <Link href={`/recipes/category/${cat.id}`} key={cat.id}>
+              <a className='block capitalize mr-2 text-gray-400 text-sm transition border-b hover:border-gray-600 hover:text-gray-600'>
+                #{cat.name}
+              </a>
+            </Link>
+          ))}
+        </div>
       </section>
     </article>
   );

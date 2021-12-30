@@ -1,4 +1,6 @@
 import { Recipe } from '../../../utils/db/models/Recipe';
+import { Category } from '../../../utils/db/models/Category';
+import { RecipeCategory } from '../../../utils/db/models/RecipeCategory';
 
 export default async function findUserRecipes(req, res) {
   const { id } = req.query;
@@ -10,6 +12,21 @@ export default async function findUserRecipes(req, res) {
     return;
   }
 
-  res.json(recipe);
+  const recipeCategories = await RecipeCategory.findAll({
+    where: { recipeId: recipe.id },
+  });
+
+  let categories = [];
+  for (let i = 0; i < recipeCategories.length; i++) {
+    const cat = await Category.findOne({
+      where: { id: recipeCategories[i].categoryId },
+    });
+
+    if (cat) categories.push(cat);
+  }
+
+  const r = { ...recipe.dataValues, categories };
+
+  res.json(r);
   return;
 }

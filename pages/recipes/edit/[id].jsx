@@ -30,7 +30,9 @@ export default function EditRecipe({ user, recipe }) {
     let cats = [];
     c.forEach((cat) => {
       const ca = cat.trim();
-      cats.push(ca.toLowerCase());
+      if (ca !== '') {
+        cats.push(ca.toLowerCase());
+      }
     });
 
     let updatedRecipe = {
@@ -60,6 +62,10 @@ export default function EditRecipe({ user, recipe }) {
 
     return;
   }
+
+  const cs = recipe.categories.map((cat) => cat.name);
+  let cats = '';
+  cs.forEach((cat) => (cats += `${cat[0].toUpperCase()}${cat.slice(1)}, `));
 
   return (
     <Layout>
@@ -193,6 +199,7 @@ export default function EditRecipe({ user, recipe }) {
                 type='text'
                 name='recipeCategories'
                 id='recipeCategories'
+                defaultValue={cats}
               />
             </div>
             <div>
