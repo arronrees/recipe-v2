@@ -12,7 +12,9 @@ export default function Home({ user, recipes }) {
       <Seo />
       <Header user={user} />
       <main>
-        <h1>All recipes</h1>
+        <h1 className='px-4 capitalize text-xl font-semibold text-gray-500'>
+          All recipes
+        </h1>
         <section>
           <RecipeGrid>
             {recipes &&

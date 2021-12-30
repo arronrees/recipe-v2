@@ -13,9 +13,10 @@ export default function UserRecipes({ user, recipes, userName }) {
       <Seo title='My Details' />
       <Header user={user} />
       <main>
-        <Menu />
         <section>
-          <h1>Recipes by {userName}</h1>
+          <h1 className='px-4 capitalize text-xl font-semibold text-gray-500'>
+            {userName}
+          </h1>
           <RecipeGrid>
             {recipes &&
               recipes.map((recipe) => (
@@ -44,6 +45,15 @@ export const getServerSideProps = withSessionSsr(
     );
     const userData = await userRes.json();
     const userName = `${userData.firstName} ${userData.lastName}`;
+
+    if (recipes.length === 0) {
+      return {
+        redirect: {
+          destination: '/',
+          permanent: false,
+        },
+      };
+    }
 
     if (user === undefined) {
       return {

@@ -6,15 +6,15 @@ import Header from '../../../components/Header';
 import RecipeGrid from '../../../components/recipes/RecipeGrid';
 import RecipeGridItem from '../../../components/recipes/RecipeGridItem';
 
-export default function CategoryRecipes({ user, recipes }) {
-  console.log(recipes);
-
+export default function CategoryRecipes({ user, recipes, category }) {
   return (
     <Layout>
       <Seo />
       <Header user={user} />
       <main>
-        <h1>Category recipes</h1>
+        <h1 className='px-4 capitalize text-xl font-semibold text-gray-500'>
+          #{category.name}
+        </h1>
         <section>
           <RecipeGrid>
             {recipes &&
@@ -37,13 +37,24 @@ export const getServerSideProps = withSessionSsr(
     const data = await fetch(
       `http://localhost:3000/api/recipe/findCategoryRecipes?catId=${id}`
     );
-    const recipes = await data.json();
+    const rs = await data.json();
+    const recipes = await rs.recipes;
+
+    if (recipes.length === 0) {
+      return {
+        redirect: {
+          destination: '/',
+          permanent: false,
+        },
+      };
+    }
 
     if (user === undefined) {
       return {
         props: {
           user: null,
           recipes,
+          category: rs.cat,
         },
       };
     }
@@ -52,6 +63,7 @@ export const getServerSideProps = withSessionSsr(
       props: {
         user,
         recipes,
+        category: rs.cat,
       },
     };
   }

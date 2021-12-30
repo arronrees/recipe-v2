@@ -21,5 +21,7 @@ export default async function findCategoryRecipes(req, res) {
     }
   }
 
-  res.json(recipes);
+  const cat = await Category.findOne({ where: { id: catId } });
+
+  res.json({ recipes, cat });
 }
