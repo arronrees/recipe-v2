@@ -9,6 +9,7 @@ export const joiRecipe = Joi.object({
   cookTime: Joi.number().min(1).required(),
   serves: Joi.number().min(1).required(),
   difficulty: Joi.string().required(),
+  categories: Joi.array(),
 }).required();
 
 export const joiRecipeEdit = Joi.object({
@@ -19,4 +20,5 @@ export const joiRecipeEdit = Joi.object({
   cookTime: Joi.number().min(1).required(),
   serves: Joi.number().min(1).required(),
   difficulty: Joi.string().required(),
+  categories: Joi.array(),
 }).required();

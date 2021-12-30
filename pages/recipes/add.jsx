@@ -18,10 +18,20 @@ export default function AddRecipe({ user }) {
   const recipeCookTime = useRef(null);
   const recipeServes = useRef(null);
   const recipeDifficulty = useRef(null);
+  const recipeCategories = useRef(null);
   const recipePublic = useRef(null);
 
   async function sendRecipe(e) {
     e.preventDefault();
+
+    setRecipeError(null);
+
+    const c = recipeCategories.current.value.split(',');
+    let cats = [];
+    c.forEach((cat) => {
+      const ca = cat.trim();
+      cats.push(ca.toLowerCase());
+    });
 
     let recipe = {
       name: recipeName.current.value,
@@ -32,6 +42,7 @@ export default function AddRecipe({ user }) {
       serves: recipeServes.current.value,
       difficulty: recipeDifficulty.current.value,
       public: recipePublic.current.value,
+      categories: cats,
     };
 
     const res = await fetch('/api/recipe/add', {
@@ -160,6 +171,22 @@ export default function AddRecipe({ user }) {
                 <option value='medium'>Medium</option>
                 <option value='hard'>Hard</option>
               </select>
+            </div>
+            <div>
+              <label
+                className='block pb-2 font-medium text-gray-500'
+                htmlFor='recipePublic'
+              >
+                Categories (separate with comma)
+              </label>
+              <input
+                className='block box-border w-full border-2 border-gray-300 border-solid rounded-md p-2 focus:outline-none
+            focus:ring-indigo-500 focus:border-indigo-500 shadow-sm'
+                ref={recipeCategories}
+                type='text'
+                name='recipeCategories'
+                id='recipeCategories'
+              />
             </div>
             <div>
               <label

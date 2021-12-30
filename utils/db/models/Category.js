@@ -13,6 +13,6 @@ export const Category = db.define('category', {
   },
 });
 
-Category.sync({ force: false }).then(() => {
-  console.log('Category model synced');
-});
+// Category.sync({ force: false }).then(() => {
+//   console.log('Category model synced');
+// });
