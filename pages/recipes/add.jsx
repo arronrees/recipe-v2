@@ -68,7 +68,9 @@ export default function AddRecipe({ user }) {
       <Header user={user} />
       <main>
         <section>
-          <h1>Add recipe</h1>
+          <h1 className='px-4 capitalize text-xl font-semibold text-gray-500'>
+            Add recipe
+          </h1>
           <form
             onSubmit={sendRecipe}
             className='px-4 py-16 grid gap-4 sm:max-w-lg sm:mx-auto'

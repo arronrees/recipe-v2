@@ -1,7 +1,7 @@
 import { Category } from '../../../utils/db/models/Category';
 import { RecipeCategory } from '../../../utils/db/models/RecipeCategory';
 import { Recipe } from '../../../utils/db/models/Recipe';
-import { User } from '../../../utils/db/models/USer';
+import { User } from '../../../utils/db/models/User';
 import { joiRecipe } from '../../../utils/recipe/joiRecipe';
 
 export default async function addRecipe(req, res) {
