@@ -11,7 +11,7 @@ export default function Header({ user }) {
     <header className='flex items-center justify-between p-4 pb-6 relative'>
       <h1 className='font-title font-bold text-xl'>
         <Link href='/'>
-          <a>Recipe App</a>
+          <a>Tasty</a>
         </Link>
       </h1>
       <NavMenu navOpen={navOpen} setNavOpen={setNavOpen} user={user} />

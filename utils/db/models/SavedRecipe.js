@@ -15,6 +15,6 @@ export const SavedRecipe = db.define('savedRecipe', {
   },
 });
 
-// SavedRecipe.sync({ force: false }).then(() => {
-//   console.log('SavedRecipe model synced');
-// });
+SavedRecipe.sync({ force: false }).then(() => {
+  console.log('SavedRecipe model synced');
+});

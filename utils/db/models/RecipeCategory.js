@@ -15,6 +15,6 @@ export const RecipeCategory = db.define('recipeCategory', {
   },
 });
 
-// RecipeCategory.sync({ force: false }).then(() => {
-//   console.log('RecipeCategory model synced');
-// });
+RecipeCategory.sync({ force: false }).then(() => {
+  console.log('RecipeCategory model synced');
+});

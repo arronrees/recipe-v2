@@ -31,6 +31,6 @@ export const User = db.define('user', {
   // profilePicture,
 });
 
-// User.sync({ force: false }).then(() => {
-//   console.log('User model synced');
-// });
+User.sync({ force: false }).then(() => {
+  console.log('User model synced');
+});

@@ -14,8 +14,8 @@ export default function UserRecipes({ user, recipes, userName }) {
       <Header user={user} />
       <main>
         <section>
-          <h1 className='px-4 capitalize text-xl font-semibold text-gray-500'>
-            {userName}
+          <h1 className='px-4 capitalize text-lg font-semibold text-gray-500'>
+            Recipes by {userName}
           </h1>
           <RecipeGrid>
             {recipes &&
